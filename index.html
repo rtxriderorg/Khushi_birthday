@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7c6d7" />
+  <title>For Khushi ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root{--pink:#ef9fbd;--pink2:#f8d9e5;--blush:#fff0f5;--deep:#9b4969;--ink:#63394a;--white:#fffdfd;--soft:#fff7fa}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--blush);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    .hidden{display:none!important}
+    .sparkle-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:radial-gradient(#e9a0bc 1px,transparent 1px),radial-gradient(#fff 1px,transparent 1px);background-size:35px 35px,57px 57px;background-position:0 0,15px 19px}
+    .screen{position:relative;z-index:1;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .login-card{width:min(980px,100%);min-height:600px;background:var(--white);border:7px solid #f5bfd2;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;box-shadow:0 22px 70px #b85f7c26}
+    .cover-side{padding:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#fffdfd;position:relative}
+    .cover-side:before,.cover-side:after{content:"♡  ✦  ♡  ✧  ♡";position:absolute;color:#d87598;letter-spacing:10px;font-size:19px}
+    .cover-side:before{top:20px}.cover-side:after{bottom:20px}
+    .tiny-label{text-transform:uppercase;letter-spacing:3px;font-size:10px;color:#c16d8e}
+    .portrait-frame{width:min(290px,80%);aspect-ratio:4/5;padding:9px;border:3px dashed #e99ab7;border-radius:48% 48% 44% 44%;margin:20px auto 17px;position:relative;background:#fff6fa}
+    .portrait-frame img{width:100%;height:100%;object-fit:contain;border-radius:inherit;display:block}
+    .bear-art{width:100%;height:100%;object-fit:contain;padding:12px;display:block}
+    .heart-open{display:grid;place-items:center;width:min(270px,76vw);aspect-ratio:1;border:0;background:transparent;margin:0 auto 24px;position:relative;color:#fff;font-size:clamp(100px,30vw,180px);filter:drop-shadow(0 10px 14px #bd668433);line-height:1}
+    .heart-open span{position:absolute;font:600 15px "DM Sans",sans-serif;color:#fff;text-shadow:0 1px 5px #9b4969;letter-spacing:1px}
+    .gallery.hidden{display:none!important}
+    .gallery-lightbox{position:fixed;inset:0;background:#fff5f9;z-index:30;overflow:auto;padding:24px 14px 40px}
+    .gallery-lightbox.hidden{display:none!important}
+    .gallery-close{display:block;margin:0 auto 20px}
+    .gallery-lightbox .gallery{max-width:900px;margin:auto}
+    .portrait-frame:after{content:"♡";position:absolute;right:-14px;top:18px;color:#dc6d93;font-size:34px;transform:rotate(15deg)}
+    h1,h2,h3,p{margin-top:0}
+    .script{font-family:"Sacramento",cursive;font-weight:400}
+    .cover-side h1{font-size:clamp(42px,6vw,65px);line-height:.95;margin:0;color:#b65b7c}
+    .cover-side p{margin:12px 0 0;font-size:13px;color:#a36a7f}
+    .keypad-side{background:#f4b7cd;padding:38px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .keypad-side h2{font-size:17px;font-weight:600;margin-bottom:18px;color:#fff}
+    .slots{display:flex;gap:9px;margin-bottom:21px}
+    .slot{height:43px;width:43px;border:2px solid #fff9fb;border-radius:10px;background:#fff8fb;display:grid;place-items:center;font-size:23px;color:#a64f73;box-shadow:0 3px 0 #d98ba8}
+    .keypad{display:grid;grid-template-columns:repeat(3,58px);gap:10px}
+    .key{height:54px;border:0;border-radius:50%;background:#fff7fa;color:#58394a;font-weight:700;font-size:20px;box-shadow:0 4px 0 #d987a5;transition:transform .12s,background .12s}
+    .key:active{transform:translateY(3px);box-shadow:0 1px 0 #d987a5}
+    .key.small{font-size:16px}
+    .hint{font-size:12px;color:#fff;margin-top:22px;min-height:18px}
+    .wrong-card{width:min(700px,100%);background:#fffdfd;border-radius:28px;padding:48px 24px;text-align:center;box-shadow:0 22px 70px #b85f7c26;border:5px solid #f5bfd2}
+    .wrong-word{font-size:clamp(44px,8vw,72px);font-weight:700;color:#a23f4c;transform:rotate(-7deg);margin:0 0 24px}
+    .wrong-doodle{font-size:75px;margin:8px}
+    .btn{border:0;border-radius:999px;padding:14px 24px;background:#c96c8f;color:white;font-weight:700;box-shadow:0 5px 0 #a74e70;transition:transform .15s}
+    .btn:active{transform:translateY(3px);box-shadow:0 2px 0 #a74e70}
+    .btn.light{background:#fff;color:#a44e72;box-shadow:0 4px 0 #efc2d2}
+    .site{position:relative;z-index:1}
+    .nav{position:sticky;top:0;z-index:10;background:#fffafce8;backdrop-filter:blur(12px);border-bottom:1px solid #f3cbd9;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-family:"Sacramento",cursive;font-size:30px;color:#b6537a;white-space:nowrap}
+    .nav a{color:#94536d;text-decoration:none;font-size:12px;font-weight:700;margin:0 7px}
+    .hero{min-height:90svh;display:grid;place-items:center;text-align:center;padding:70px 20px 65px;position:relative;overflow:hidden;background:linear-gradient(180deg,#fff8fb,#fbe0e9 75%,#fff1f6)}
+    .hero-inner{max-width:820px}
+    .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:4px;color:#bb7090}
+    .hero h1{font-family:"Sacramento",cursive;font-size:clamp(66px,12vw,130px);line-height:.9;color:#b45179;margin:18px 0}
+    .hero h1 span{display:block;font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(25px,5vw,46px);letter-spacing:0;color:#7f4960;margin-top:19px}
+    .hero p{max-width:560px;line-height:1.8;margin:0 auto 26px;color:#8c5b70}
+    .hero-photo{width:min(270px,66vw);aspect-ratio:4/5;object-fit:cover;border:10px solid white;outline:2px dashed #e4a0b9;outline-offset:6px;border-radius:48% 48% 18px 18px;box-shadow:0 18px 45px #b85f7c25;margin:20px auto 28px;display:block;transform:rotate(-2deg)}
+    .float{position:absolute;opacity:.8;animation:drift 5s ease-in-out infinite;user-select:none}
+    .f1{left:8%;top:18%;font-size:33px}.f2{right:10%;top:25%;font-size:25px;animation-delay:1s}.f3{left:15%;bottom:16%;font-size:26px;animation-delay:2s}.f4{right:13%;bottom:15%;font-size:36px;animation-delay:.5s}
+    @keyframes drift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+    .section{padding:76px 20px;max-width:1100px;margin:auto}
+    .section-head{text-align:center;margin:0 auto 38px;max-width:700px}
+    .section-head .mini{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:#c17795}
+    .section-head h2{font:italic 600 clamp(30px,5vw,48px) "Playfair Display",serif;color:#9d4e70;margin:10px 0 13px}
+    .section-head p{line-height:1.8;color:#926579}
+    .countdown-wrap{background:linear-gradient(135deg,#f7c8d9,#fff4f8);border:1px solid #f1b9ce;border-radius:28px;padding:36px 18px;text-align:center;box-shadow:0 14px 35px #a9537520}
+    .countdown{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:24px 0}
+    .time-box{min-width:90px;background:#fffdfd;border-radius:18px;padding:17px 12px;border:1px solid #f1d1dd;box-shadow:0 5px 0 #edc0d1}
+    .time-box strong{display:block;font-size:clamp(28px,5vw,40px);color:#b4567c}
+    .time-box span{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#a47789}
+    .small-note{font-size:12px;color:#a36b81}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .polaroid{background:#fff;padding:11px 11px 19px;box-shadow:0 10px 25px #b85f7c1a;transform:rotate(var(--tilt,1deg));transition:transform .2s}
+    .polaroid:nth-child(3n){--tilt:2deg}.polaroid:nth-child(3n+2){--tilt:-2deg}
+    .polaroid:hover{transform:rotate(0) translateY(-5px)}
+    .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#fae1ea}
+    .polaroid figcaption{text-align:center;font-family:"Sacramento",cursive;font-size:25px;color:#a95778;padding-top:12px}
+    .placeholder{display:grid;place-items:center;text-align:center;color:#c07b98;font-size:13px;padding:12px;line-height:1.6}
+    .letter-card{background:#fffdfd;border:1px solid #f0c8d7;border-radius:24px;padding:clamp(25px,5vw,52px);box-shadow:0 16px 40px #b85f7c17;position:relative;overflow:hidden}
+    .letter-card:before{content:"♡";position:absolute;right:16px;top:-30px;font-size:150px;color:#fff0f5}
+    .letter-card>*{position:relative}
+    .letter-card .dear{font:36px "Sacramento",cursive;color:#b6537a}
+    .letter-card p{line-height:2;color:#805367;font-size:15px}
+    .signature{font:38px "Sacramento",cursive;color:#b6537a;text-align:right;margin:24px 0 0}
+    .memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .memory{padding:23px 15px;background:#fffdfd;border:1px solid #f2d0dc;border-radius:20px;text-align:center}
+    .memory .emoji{font-size:28px}.memory h3{font:italic 600 19px "Playfair Display",serif;color:#a45173;margin:10px 0}.memory p{font-size:13px;line-height:1.7;color:#926579;margin:0}
+    .wish{background:#f5c1d4;border-radius:30px;text-align:center;padding:48px 22px;position:relative;overflow:hidden}
+    .wish h2{font:clamp(38px,7vw,64px) "Sacramento",cursive;color:#9c426a;margin:0 0 14px}
+    .wish p{max-width:620px;line-height:1.8;margin:0 auto 22px;color:#7c455e}
+    .footer{text-align:center;padding:32px 15px 50px;color:#ad718a;font-size:12px}
+    .footer .heart{font-size:22px;display:block;margin-bottom:6px}
+    .heart-rain{position:fixed;top:-30px;z-index:20;pointer-events:none;animation:fall linear forwards;color:#e878a2;text-shadow:0 2px 5px #fff}
+    @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+    .tap-heart{position:fixed;z-index:999;pointer-events:none;font-size:25px;color:#e878a2;text-shadow:0 2px 8px #fff;transform:translate(-50%,-50%);animation:tapPop .85s ease-out forwards}
+    @keyframes tapPop{0%{opacity:0;transform:translate(-50%,-40%) scale(.35)}25%{opacity:1;transform:translate(-50%,-70%) scale(1.25)}100%{opacity:0;transform:translate(-50%,-145%) scale(.8)}}
+    .music-toggle{position:fixed;bottom:16px;right:16px;z-index:12;border:1px solid #efc1d2;background:#fffdfd;color:#a65377;border-radius:999px;padding:12px 15px;box-shadow:0 5px 18px #a9537520;font-size:12px}
+    @media(max-width:700px){.login-card{grid-template-columns:1fr;min-height:unset}.cover-side{padding:34px 20px 27px}.portrait-frame{width:175px;margin:14px auto}.keypad-side{padding:27px 20px}.keypad{grid-template-columns:repeat(3,54px);gap:9px}.key{height:50px}.nav{padding:10px 12px}.nav .links{display:none}.hero{min-height:84svh}.gallery{grid-template-columns:repeat(2,1fr);gap:14px}.gallery figure:last-child{grid-column:auto}.memory-grid{grid-template-columns:1fr}.section{padding:58px 16px}.time-box{min-width:70px;padding:13px 9px}.time-box span{letter-spacing:1px}.polaroid{padding:7px 7px 13px}.polaroid figcaption{font-size:22px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="sparkle-bg"></div>
+<section id="lockScreen" class="screen">
+  <div class="login-card">
+    <div class="cover-side">
+      <div class="tiny-label">a tiny secret made with love</div>
+      <div class="portrait-frame" aria-label="A cute brown and white teddy bear">
+        <svg class="bear-art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" role="img" aria-label="Cute brown and white teddy bear">
+          <defs><linearGradient id="bearFur" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b98055"/><stop offset="1" stop-color="#815234"/></linearGradient></defs>
+          <ellipse cx="150" cy="310" rx="92" ry="15" fill="#e8bfd0" opacity=".5"/>
+          <circle cx="82" cy="65" r="37" fill="#8d5b3d"/><circle cx="218" cy="65" r="37" fill="#8d5b3d"/><circle cx="82" cy="65" r="21" fill="#f5d9c7"/><circle cx="218" cy="65" r="21" fill="#f5d9c7"/>
+          <ellipse cx="150" cy="115" rx="91" ry="88" fill="url(#bearFur)"/><ellipse cx="150" cy="143" rx="59" ry="48" fill="#fff0df"/>
+          <ellipse cx="118" cy="111" rx="8" ry="11" fill="#39251d"/><ellipse cx="182" cy="111" rx="8" ry="11" fill="#39251d"/><circle cx="115" cy="107" r="2.5" fill="#fff"/><circle cx="179" cy="107" r="2.5" fill="#fff"/>
+          <ellipse cx="150" cy="133" rx="12" ry="9" fill="#513226"/><path d="M150 141 Q139 154 128 144 M150 141 Q161 154 172 144" fill="none" stroke="#754a37" stroke-width="4" stroke-linecap="round"/>
+          <ellipse cx="100" cy="230" rx="34" ry="53" transform="rotate(-25 100 230)" fill="url(#bearFur)"/><ellipse cx="200" cy="230" rx="34" ry="53" transform="rotate(25 200 230)" fill="url(#bearFur)"/>
+          <ellipse cx="150" cy="230" rx="67" ry="79" fill="url(#bearFur)"/><ellipse cx="150" cy="232" rx="43" ry="52" fill="#fff0df"/>
+          <ellipse cx="108" cy="286" rx="35" ry="24" fill="#8d5b3d"/><ellipse cx="192" cy="286" rx="35" ry="24" fill="#8d5b3d"/><ellipse cx="108" cy="284" rx="23" ry="14" fill="#f5d9c7"/><ellipse cx="192" cy="284" rx="23" ry="14" fill="#f5d9c7"/>
+          <path d="M116 183 Q150 203 184 183" fill="none" stroke="#f4bfd2" stroke-width="13" stroke-linecap="round"/><path d="M150 193 L138 181 L150 169 L162 181 Z" fill="#e98caf"/>
+          <circle cx="90" cy="141" r="11" fill="#f5a4b9" opacity=".75"/><circle cx="210" cy="141" r="11" fill="#f5a4b9" opacity=".75"/>
+        </svg>
+      </div>
+      <h1 class="script">Khushi ♡</h1>
+      <p>a little surprise is waiting for you ♡</p>
+    </div>
+    <div class="keypad-side">
+      <h2>Enter a passcode</h2>
+      <div class="slots" aria-label="Four digit passcode"><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div></div>
+      <div class="keypad" id="keypad">
+        <button class="key" data-key="1">1</button><button class="key" data-key="2">2</button><button class="key" data-key="3">3</button>
+        <button class="key" data-key="4">4</button><button class="key" data-key="5">5</button><button class="key" data-key="6">6</button>
+        <button class="key" data-key="7">7</button><button class="key" data-key="8">8</button><button class="key" data-key="9">9</button>
+        <button class="key small" data-key="clear">✦</button><button class="key" data-key="0">0</button><button class="key small" data-key="back">⌫</button>
+      </div>
+      <div class="hint" id="keyHint">a little surprise is waiting ♡</div>
+    </div>
+  </div>
+</section>
+<section id="wrongScreen" class="screen hidden">
+  <div class="wrong-card">
+    <p class="wrong-word">WRONG</p>
+    <div class="wrong-doodle">🐻‍❄️ 💗 🐻</div>
+    <p style="color:#9c7182;margin:8px 0 25px">Oops, babyy! That's not the magic number ♡</p>
+    <button class="btn" id="tryAgain">↶ &nbsp; TRY AGAIN</button>
+  </div>
+</section>
+<main id="birthdaySite" class="site hidden">
+  <nav class="nav">
+    <div class="brand">Khushi ♡</div>
+    <div class="links"><a href="#countdown">COUNTDOWN</a><a href="#gallery">OUR GALLERY</a><a href="#letter">A LETTER</a><a href="#wish">WISHES</a></div>
+    <a href="#letter" style="text-decoration:none;color:#a65377;font-size:12px;font-weight:700">for Babyy ♡</a>
+  </nav>
+  <header class="hero">
+    <span class="float f1">♡</span><span class="float f2">✧</span><span class="float f3">୨୧</span><span class="float f4">♡</span>
+    <div class="hero-inner">
+      <div class="eyebrow">a little corner of the internet, made just for you</div>
+      <h1>For Khushi<span>my favourite person ♡</span></h1>
+      <img class="hero-photo" src="photos/photo-1.jpg" alt="Our favourite picture together" onerror="this.src='photos/placeholder.svg'">
+      <p>For Khushi — my Babyy, my favourite smile, and one of the sweetest parts of my world. Every little detail here is just for you. ♡</p>
+      <a class="btn" href="#letter" style="display:inline-block;text-decoration:none">open your little letter ♡</a>
+    </div>
+  </header>
+  <section class="section" id="countdown">
+    <div class="section-head"><div class="mini">the special day is almost here</div><h2>Counting down to you ♡</h2><p>October 22 is circled in my heart. Here's the little countdown until your day arrives.</p></div>
+    <div class="countdown-wrap">
+      <div style="font:34px 'Sacramento',cursive;color:#a95177">22 · 10 · 2026</div>
+      <div class="countdown">
+        <div class="time-box"><strong id="days">00</strong><span>days</span></div>
+        <div class="time-box"><strong id="hours">00</strong><span>hours</span></div>
+        <div class="time-box"><strong id="minutes">00</strong><span>minutes</span></div>
+        <div class="time-box"><strong id="seconds">00</strong><span>seconds</span></div>
+      </div>
+      <div id="countdownMessage" class="small-note">every second brings us closer to your day ♡</div>
+    </div>
+  </section>
+  <section class="section" id="gallery">
+    <div class="section-head"><div class="mini">nine little reasons to smile</div><h2>A heart full of you ♡</h2><p>Tap the heart to open your little photo collection.</p></div>
+    <button class="heart-open" id="openGallery" aria-label="Open Khushi photo gallery">💗<span>tap to open ♡</span></button>
+  </section>
+  <section class="section" id="letter">
+    <div class="section-head"><div class="mini">please read this slowly</div><h2>A letter for my Babyy 💌</h2><p>Not everything fits into a message, but I'll always try to tell you how much you mean to me.</p></div>
+    <article class="letter-card">
+      <div class="dear">My dearest Khushi, ♡</div>
+      <p>I wanted to make you something that feels a little more special than an ordinary text — a tiny place on the internet that is only yours, filled with pink hearts, our memories, and all the things I sometimes don't know how to say properly.</p>
+      <p>I hope this new year of your life brings you the kind of happiness that stays, the kind of laughter that makes your cheeks hurt, and so many moments that remind you how loved and precious you are. I hope your dreams feel closer, your worries feel lighter, and you always find reasons to be proud of the person you're becoming.</p>
+      <p>Thank you for being you, Khushi. For the little things that make you different from everyone else, for the memories we've made, and for the simple fact that you can make an ordinary day feel special. Even the smallest moments with you can become memories I want to keep for a long, long time.</p>
+      <p>On your birthday, I wish I could wrap every good thing in the world into one tiny gift and put it in your hands. Since I can't do that, here's this little website — made with care, a little bit of effort, and a whole lot of affection. Whenever you open it, I hope it makes you smile, even if just for a moment.</p>
+      <p>Never forget that you deserve kindness, peace, exciting adventures, genuine smiles, and people who celebrate the real you. Keep being your lovely, silly, wonderful self. I hope 22 October gives you a hundred reasons to smile, and the year ahead gives you a thousand more.</p>
+      <p>Happy birthday, my Babyy. This little page is just one small way of saying: you matter, your happiness matters, and I'm really glad you're in my life. ♡</p>
+      <div class="signature">always cheering for you, ♡</div>
+    </article>
+  </section>
+  <section class="section">
+    <div class="section-head"><div class="mini">little things i hope for you</div><h2>Birthday wishes, wrapped in pink 🎀</h2></div>
+    <div class="memory-grid">
+      <div class="memory"><div class="emoji">🌷</div><h3>Soft days</h3><p>May life be gentle with you, and may you always find a little beauty in ordinary days.</p></div>
+      <div class="memory"><div class="emoji">✨</div><h3>Big dreams</h3><p>May you have the courage to chase what makes your heart light up, one step at a time.</p></div>
+      <div class="memory"><div class="emoji">💗</div><h3>Real happiness</h3><p>May you feel appreciated, supported, and loved in ways that feel true to you.</p></div>
+      <div class="memory"><div class="emoji">🦋</div><h3>New beginnings</h3><p>May this year bring new experiences, new confidence, and lovely surprises.</p></div>
+      <div class="memory"><div class="emoji">🧁</div><h3>Little joys</h3><p>More favourite songs, sweet treats, random giggles, and moments worth remembering.</p></div>
+      <div class="memory"><div class="emoji">🌙</div><h3>Peace of mind</h3><p>May you rest without guilt, breathe easier, and remember you don't need to be perfect.</p></div>
+    </div>
+  </section>
+  <section class="section" id="wish">
+    <div class="wish">
+      <div style="font-size:35px;margin-bottom:8px">🎂 ✧ ♡ ✧ 🎀</div>
+      <h2>To my Babyy, Khushi</h2>
+      <p>May your birthday be as sweet as your favourite little things, as bright as your happiest smile, and as beautiful as all the good things still waiting for you. Keep this little corner as a reminder that you are celebrated. Happy birthday, pretty girl. ♡</p>
+      <button class="btn light" id="heartButton">send you a sky full of hearts ♡</button>
+    </div>
+  </section>
+  <footer class="footer"><span class="heart">♡</span>made with love, just for Khushi · 22.10.2026<br><span style="font-family:'Sacramento',cursive;font-size:25px">a little pink universe for Babyy</span></footer>
+</main>
+<div class="gallery-lightbox hidden" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Khushi photo gallery"><button class="btn gallery-close" id="closeGallery">close gallery ♡</button><div class="gallery" id="photoGallery"></div></div>
+<audio id="birthdaySong" src="song.mp3" preload="auto" loop></audio>
+<button class="music-toggle hidden" id="musicToggle" aria-label="Toggle birthday song">♫ play song</button>
+<script>
+  // A tiny heart appears wherever the visitor taps/clicks.
+  document.addEventListener("pointerdown", (e) => {
+    const heart = document.createElement("span");
+    heart.className = "tap-heart";
+    heart.textContent = ["♡", "💗", "💕", "♥"][Math.floor(Math.random() * 4)];
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
+    document.body.appendChild(heart);
+    heart.addEventListener("animationend", () => heart.remove(), { once: true });
+  });
+
+  const PASSCODE = "2212";
+  let entered = "";
+  const slots = [...document.querySelectorAll(".slot")];
+  const lockScreen = document.getElementById("lockScreen");
+  const wrongScreen = document.getElementById("wrongScreen");
+  const site = document.getElementById("birthdaySite");
+  const hint = document.getElementById("keyHint");
+  function paintSlots(){slots.forEach((s,i)=>s.textContent=entered[i]?"●":"")}
+  function checkCode(){
+    if(entered.length!==4)return;
+    if(entered===PASSCODE){
+      lockScreen.classList.add("hidden");wrongScreen.classList.add("hidden");site.classList.remove("hidden");document.getElementById("musicToggle").classList.remove("hidden");window.scrollTo(0,0);makeHeartRain(24);
+      const song=document.getElementById("birthdaySong");song.play().then(()=>{document.getElementById("musicToggle").textContent="♫ pause song"}).catch(()=>{document.getElementById("musicToggle").textContent="♫ tap to play song"});
+    }else{
+      lockScreen.classList.add("hidden");wrongScreen.classList.remove("hidden");entered="";paintSlots();hint.textContent="try again, you got this ♡";
+    }
+  }
+  document.getElementById("keypad").addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b)return;const k=b.dataset.key;
+    if(k==="clear")entered="";else if(k==="back")entered=entered.slice(0,-1);else if(entered.length<4)entered+=k;
+    paintSlots();if(entered.length===4)setTimeout(checkCode,220);
+  });
+  document.getElementById("tryAgain").addEventListener("click",()=>{wrongScreen.classList.add("hidden");lockScreen.classList.remove("hidden");hint.textContent="one more try, babyy ♡"});
+  document.addEventListener("keydown",e=>{
+    if(lockScreen.classList.contains("hidden"))return;
+    if(/^\d$/.test(e.key)&&entered.length<4)entered+=e.key;
+    else if(e.key==="Backspace")entered=entered.slice(0,-1);
+    paintSlots();if(entered.length===4)setTimeout(checkCode,220);
+  });
+  const captions=["my favourite smile ♡","pretty in every way","a little sunshine","the sweetest face","main character energy","this one is a favourite","my cutie, always","made of magic","just Khushi things ♡"];
+  const gallery=document.getElementById("photoGallery");
+  captions.forEach((caption,i)=>{
+    const fig=document.createElement("figure");fig.className="polaroid";
+    const img=document.createElement("img");img.src=`photos/photo-${i+2}.jpg`;img.alt=`Khushi photo ${i+1}`;
+    img.onerror=()=>{img.classList.add("placeholder");img.src="photos/placeholder.svg";img.alt="Add your photo here"};
+    const cap=document.createElement("figcaption");cap.textContent=caption;
+    fig.append(img,cap);gallery.append(fig);
+  });
+  document.getElementById("openGallery").addEventListener("click",()=>{document.getElementById("galleryLightbox").classList.remove("hidden");document.body.style.overflow="hidden"});
+  document.getElementById("closeGallery").addEventListener("click",()=>{document.getElementById("galleryLightbox").classList.add("hidden");document.body.style.overflow=""});
+  document.getElementById("musicToggle").addEventListener("click",async()=>{const song=document.getElementById("birthdaySong"),btn=document.getElementById("musicToggle");if(song.paused){try{await song.play();btn.textContent="♫ pause song"}catch{btn.textContent="♫ tap to play song"}}else{song.pause();btn.textContent="♫ play song"}});
+  const target=new Date("2026-10-22T00:00:00+05:30").getTime();
+  function tick(){
+    const now=Date.now(),diff=target-now;
+    if(diff<=0){["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).textContent="00");document.getElementById("countdownMessage").textContent="IT'S YOUR DAY, KHUSHI! HAPPY BIRTHDAY, BABYY! ♡";return}
+    const vals={days:Math.floor(diff/86400000),hours:Math.floor(diff%86400000/3600000),minutes:Math.floor(diff%3600000/60000),seconds:Math.floor(diff%60000/1000)};
+    Object.entries(vals).forEach(([id,v])=>document.getElementById(id).textContent=String(v).padStart(2,"0"));
+  }
+  tick();setInterval(tick,1000);
+  function makeHeartRain(count=18){
+    const symbols=["♡","♥","💗","✧","💕","୨୧"];
+    for(let i=0;i<count;i++){
+      const h=document.createElement("div");h.className="heart-rain";h.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+      h.style.left=Math.random()*100+"vw";h.style.fontSize=(14+Math.random()*24)+"px";h.style.animationDuration=(3+Math.random()*4)+"s";h.style.animationDelay=(Math.random()*1.4)+"s";
+      document.body.appendChild(h);setTimeout(()=>h.remove(),8500);
+    }
+  }
+  document.getElementById("heartButton").addEventListener("click",()=>makeHeartRain(65));
+  let rainTimer=setInterval(()=>{if(!site.classList.contains("hidden"))makeHeartRain(3)},3500);
+</script>
+</body>
+</html>
